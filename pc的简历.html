@@ -1,0 +1,529 @@
+<!-- TODO 题目要求也会同时显示在注释中，本题直接点击【代码检查即可】-->
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- font awesome cdn link  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600&display=swap');
+         :root {
+            --blue: #2980b9;
+            --black: #333;
+            --white: #fff;
+            --light-color: #777;
+            --light-bg: #eee;
+            --box-shadow: 0 5px 10px rgba(0, 0, 0, .1);
+        }
+        
+        * {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            outline: none;
+            border: none;
+            text-decoration: none;
+            text-transform: capitalize;
+            transition: all .2s linear;
+        }
+        
+        html::-webkit-scrollbar {
+            width: 10px;
+        }
+        
+        html::-webkit-scrollbar-track {
+            background: var(--blue);
+        }
+        
+        html::-webkit-scrollbar-thumb {
+            background: var(--white);
+            border-radius: 50px;
+        }
+        
+        .title {
+            font-size: 25px;
+            color: var(--blue);
+            margin-bottom: 15px;
+        }
+        
+        .btn {
+            margin-top: 10px;
+            display: inline-block;
+            padding: 7px 20px;
+            border-radius: 5px;
+            background: var(--blue);
+            color: var(--white);
+            font-size: 17px;
+            box-shadow: var(--box-shadow);
+        }
+        
+        .btn:hover {
+            background: var(--black);
+        }
+        
+        .container {
+            padding: 100px 9%;
+            background: linear-gradient(45deg, deeppink, var(--blue));
+            display: flex;
+        }
+        
+        .container .profile {
+            flex: 1 1 400px;
+            background: var(--white);
+            padding: 20px 30px;
+            text-align: center;
+            position: sticky;
+            top: 20px;
+            left: 0;
+            border-right: 2px solid var(--black);
+            align-self: flex-start;
+        }
+        
+        .container .profile img {
+            height: 150px;
+            width: 150px;
+            border-radius: 50%;
+            border: 2px solid var(--black);
+            object-fit: cover;
+            margin-bottom: 10px;
+        }
+        
+        .container .profile h3 {
+            color: var(--black);
+            font-size: 20px;
+        }
+        
+        .container .profile p {
+            color: var(--blue);
+            padding: 5px 0;
+            margin-bottom: 10px;
+            font-size: 15px;
+        }
+        
+        .container .profile .share {
+            margin: 10px 0;
+        }
+        
+        .container .profile .share a {
+            height: 50px;
+            width: 50px;
+            line-height: 50px;
+            font-size: 20px;
+            border-radius: 50%;
+            color: var(--black);
+            background: var(--light-bg);
+        }
+        
+        .container .profile .share a:hover {
+            background: var(--blue);
+            color: var(--white);
+            box-shadow: var(--box-shadow);
+        }
+        
+        .container .information {
+            flex: 1 1 1000px;
+            background: var(--white);
+            padding: 20px 30px;
+        }
+        
+        .container .information .about p {
+            font-size: 17px;
+            line-height: 2;
+            padding-bottom: 10px;
+            color: var(--light-color);
+        }
+        
+        .container .information .about .box-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .container .information .about .box-container .box {
+            flex: 1 1 250px;
+        }
+        
+        .container .information .about .box-container .box h3 {
+            font-size: 15px;
+            padding: 10px 0;
+            color: var(--black);
+        }
+        
+        .container .information .about .box-container .box h3 span {
+            color: var(--light-color);
+        }
+        
+        .container .information .services {
+            padding: 20px 0;
+        }
+        
+        .container .information .services .box-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .container .information .services .box-container .box {
+            flex: 1 1 17px;
+            text-align: center;
+            border-radius: 5px;
+            padding: 20px;
+            background: var(--light-bg);
+        }
+        
+        .container .information .services .box-container .box img {
+            height: 50px;
+            margin-bottom: 10px;
+        }
+        
+        .container .information .services .box-container .box h3 {
+            font-size: 15px;
+            color: var(--light-color);
+        }
+        
+        .container .information .skills .box-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .container .information .skills .box-container .box {
+            flex: 1 1 300px;
+        }
+        
+        .container .information .skills .box-container .box .progress h3 {
+            padding: 10px 0;
+            display: flex;
+            justify-content: space-between;
+            color: var(--black);
+            font-size: 15px;
+        }
+        
+        .container .information .skills .box-container .box .progress h3 span {
+            color: var(--light-color);
+        }
+        
+        .container .information .skills .box-container .box .progress .bar {
+            overflow: hidden;
+            border-radius: 50px;
+            height: 10px;
+            background: var(--light-bg);
+        }
+        
+        .container .information .skills .box-container .box .progress .bar span {
+            background: var(--blue);
+            height: 100%;
+            display: block;
+            border-radius: 50px;
+        }
+        
+        .container .information .skills .box-container .box:first-child .progress:nth-child(1) .bar span {
+            width: 95%;
+        }
+        
+        .container .information .skills .box-container .box:first-child .progress:nth-child(2) .bar span {
+            width: 80%;
+        }
+        
+        .container .information .skills .box-container .box:first-child .progress:nth-child(3) .bar span {
+            width: 65%;
+        }
+        
+        .container .information .skills .box-container .box:first-child .progress:nth-child(4) .bar span {
+            width: 70%;
+        }
+        
+        .container .information .skills .box-container .box:last-child .progress:nth-child(1) .bar span {
+            width: 90%;
+        }
+        
+        .container .information .skills .box-container .box:last-child .progress:nth-child(2) .bar span {
+            width: 75%;
+        }
+        
+        .container .information .skills .box-container .box:last-child .progress:nth-child(3) .bar span {
+            width: 65%;
+        }
+        
+        .container .information .skills .box-container .box:last-child .progress:nth-child(4) .bar span {
+            width: 70%;
+        }
+        
+        .container .information .experience {
+            margin: 20px 0;
+        }
+        
+        .container .information .experience .box-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .container .information .experience .box-container .box {
+            padding: 20px;
+            border-radius: 5px;
+            flex: 1 1 350px;
+            background: var(--light-bg);
+        }
+        
+        .container .information .experience .box-container .box span {
+            color: var(--blue);
+            font-size: 15px;
+        }
+        
+        .container .information .experience .box-container .box h3 {
+            color: var(--black);
+            font-size: 17px;
+            padding: 5px 0;
+        }
+        
+        .container .information .experience .box-container .box p {
+            color: var(--light-color);
+            line-height: 2;
+            font-size: 13px;
+        }
+        
+        .container .information .contact .box-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .container .information .contact .box-container .box {
+            flex: 1 1 200px;
+            display: flex;
+            align-self: flex-start;
+            gap: 10px;
+        }
+        
+        .container .information .contact .box-container .box i {
+            height: 40px;
+            width: 40px;
+            line-height: 40px;
+            font-size: 15px;
+            border-radius: 50%;
+            background: var(--blue);
+            color: var(--white);
+            text-align: center;
+        }
+        
+        .container .information .contact .box-container .box h3 {
+            font-size: 17px;
+            color: var(--black);
+            padding-bottom: 5px;
+        }
+        
+        .container .information .contact .box-container .box p {
+            font-size: 14px;
+            color: var(--light-color);
+            line-height: 2;
+        }
+        
+        @media (max-width:1200px) {
+            .container {
+                flex-flow: column;
+                padding: 20px;
+                justify-content: center;
+            }
+            .container .profile {
+                position: static;
+                border-radius: 5px;
+                box-shadow: var(--box-shadow);
+                padding: 20px;
+                border-right: none;
+                margin: 0 auto;
+                margin-bottom: 15px;
+            }
+            .container .information {
+                border-radius: 5px;
+                box-shadow: var(--box-shadow);
+                padding: 20px;
+            }
+        }
+        
+        @media (max-width:450px) {
+            .container .profile {
+                width: 100%;
+            }
+            .container .profile .btn {
+                width: 100%;
+            }
+            .container .information .about p {
+                font-size: 12px;
+            }
+            .container .information .experience .box-container .box p {
+                font-size: 12px;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="container">
+
+
+        <div class="profile">
+            <img src="http://nocturne.bczcdn.com/file/1645597751069_39196/head.png" alt="">
+            <h3>王鹏程</h3>
+            <p>前端开发</p>
+            <div class="share">
+                <a href="#" class="fab fa-facebook-f"></a>
+                <a href="#" class="fab fa-twitter"></a>
+                <a href="#" class="fab fa-instagram"></a>
+                <a href="#" class="fab fa-linkedin"></a>
+            </div>
+            <div class="buttons">
+                <a href="http://nocturne.bczcdn.com/audio/1647325026464_87789/小夜简历3.0.pdf" class="btn">下载简历</a>
+                <a href="javascript:alert('发送成功');" class="btn">发送面试邀请</a>
+            </div>
+        </div>
+
+        <div class="information">
+
+            <div class="about">
+                <h3 class="title">about me</h3>
+                <p>我叫王鹏程，也可以叫我pc，擅长Python。</p>
+                <p>不仅如此，我还能熟练使用前端语言独立制作电商网站，招聘网站等等，这个简历也是我用HTML和CSS完成的哦。</p>
+                <div class="box-container">
+                    <div class="box">
+                        <h3> <span>年龄 : </span> 21 </h3>
+                        <h3> <span> 地址 : </span> 贵州，贵阳 </h3>
+                        <h3> <span> 电话 : </span> 17784119207 </h3>
+                        <h3> <span> 邮箱 : </span> pc103007@163.com </h3>
+                    </div>
+                    <div class="box">
+                        <h3> <span> 求职 : </span> web design </h3>
+                        <h3> <span> 语言 : </span> chinese,english </h3>
+                        <h3> <span> 工龄 : </span> 0 年 </h3>
+                        <h3> <span> 现状 : </span> 随时到岗 </h3>
+                    </div>
+                </div>
+            </div>
+
+            <div class="services">
+                <h3 class="title">my services</h3>
+                <div class="box-container">
+                    <div class="box">
+                        <img src="http://nocturne.bczcdn.com/file/1645598211806_42022/icon-1.png" alt="">
+                        <h3>HTML 5</h3>
+                    </div>
+                    <div class="box">
+                        <img src="http://nocturne.bczcdn.com/file/1645598216656_89057/icon-2.png" alt="">
+                        <h3>CSS 3</h3>
+                    </div>
+                    <div class="box">
+                        <img src="http://nocturne.bczcdn.com/file/1645598219832_4197/icon-3.png" alt="">
+                        <h3>JavaScript</h3>
+                    </div>
+                    <div class="box">
+                        <img src="http://nocturne.bczcdn.com/file/1645598223509_63268/icon-4.png" alt="">
+                        <h3>Python</h3>
+                    </div>
+                    <div class="box">
+                        <img src="http://nocturne.bczcdn.com/file/1645598226940_86454/icon-5.png" alt="">
+                        <h3>SQL</h3>
+                    </div>
+                    <div class="box">
+                        <img src="http://nocturne.bczcdn.com/file/1645598230253_49248/icon-6.png" alt="">
+                        <h3>C++</h3>
+                    </div>
+                </div>
+            </div>
+
+            <div class="skills">
+                <h3 class="title">my skills</h3>
+                <div class="box-container">
+                    <div class="box">
+                        <div class="progress">
+                            <h3>html <span>95%</span></h3>
+                            <div class="bar"><span></span></div>
+                        </div>
+                        <div class="progress">
+                            <h3>css <span>80%</span></h3>
+                            <div class="bar"><span></span></div>
+                        </div>
+                        <div class="progress">
+                            <h3>javascript <span>65%</span></h3>
+                            <div class="bar"><span></span></div>
+                        </div>
+                        <div class="progress">
+                            <h3>photoshop <span>70%</span></h3>
+                            <div class="bar"><span></span></div>
+                        </div>
+                    </div>
+                    <div class="box">
+                        <div class="progress">
+                            <h3>web design <span>90%</span></h3>
+                            <div class="bar"><span></span></div>
+                        </div>
+                        <div class="progress">
+                            <h3>graphic design <span>75%</span></h3>
+                            <div class="bar"><span></span></div>
+                        </div>
+                        <div class="progress">
+                            <h3>app design <span>65%</span></h3>
+                            <div class="bar"><span></span></div>
+                        </div>
+                        <div class="progress">
+                            <h3>digital marketing <span>70%</span></h3>
+                            <div class="bar"><span></span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="experience">
+                <h3 class="title">my experience</h3>
+                <div class="box-container">
+                    <div class="box">
+                        <span>2024</span>
+                        <h3>前端工程师</h3>
+                        <p>主要负责优选前端页面开发、适配。</p>
+                        <p></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contact">
+                <h3 class="title">contact info</h3>
+                <div class="box-container">
+                    <div class="box">
+                        <i class="fas fa-map"></i>
+                        <div class="info">
+                            <h3>微信</h3>
+                            <p>Cimmop</p>
+                        </div>
+                    </div>
+                    <div class="box">
+                        <i class="fas fa-phone"></i>
+                        <div class="info">
+                            <h3>my number</h3>
+                            <p>17784119207</p>
+                        </div>
+                    </div>
+                    <div class="box">
+                        <i class="fas fa-envelope"></i>
+                        <div class="info">
+                            <h3>my email</h3>
+                            <p>103007@163.com</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+</body>
+
+</html>
